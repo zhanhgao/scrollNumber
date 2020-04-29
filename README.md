@@ -1,2 +1,2 @@
-![image](https://github.com/zhanhgao/scrollNumber/blob/master/show.gif)
+![image](https://github.com/zhanhgao/scrollNumber/blob/master/show.GIF)
 ————————————————
