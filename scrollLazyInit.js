@@ -13,17 +13,15 @@ function NumberGrow(element, options) {
     options = options || {};
 
     var _node = element,
+        _hz = 16,//60Hz性价比最高。mac可达到47.95   https://support.apple.com/zh-cn/HT210742
         time = options.time || _node.dataset.time, //总时间
         num = options.num || _node.dataset.value, //要显示的真实数值
         digit = options.digit || _node.dataset.digit, //小数点后几位增长
-        step = num * 16 / (time * 1000), //每16ms增加的数值
+        step = num * _hz / (time * 1000), 
         start = 0, //计数器
         interval, //定时器
         old = 0;
-
-    //每帧不能超过16ms，所以理想的interval间隔为16ms
-    //step为每16ms增加的数值
-
+    
     interval = setInterval(function () {
         start = start + step;
         if (start >= num) {
@@ -46,11 +44,10 @@ function NumberGrow(element, options) {
 
         old = t;
         _node.textContent = old;
-    }, 16);
+    }, _hz);
 }
 // 初始化
 function init() {
-    //将每个自动注册的组件的逻辑添加到scrollLazy来管理
     var nodeList = document.querySelectorAll('[data-ride="numberGrow"]');
     for (i = 0; i < nodeList.length; i++) {
         (function () {
